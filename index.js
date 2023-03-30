@@ -1,9 +1,6 @@
 import Discord from 'discord.js'
 import fetch from 'node-fetch'
 import dotenv from 'dotenv'
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT);
 
 dotenv.config();
 
