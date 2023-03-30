@@ -1,6 +1,6 @@
-import Discord from 'discord.js'
-import fetch from 'node-fetch'
-import dotenv from 'dotenv'
+const Discord = require('discord.js');
+const fetch = require('node-fetch');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
