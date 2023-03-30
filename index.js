@@ -35,11 +35,10 @@ client.on('messageCreate', (message) => {
             message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
             fetch(`https://impossibleimages.co.uk/wp-json/impossibleimages/upload?image=${image}`).then(function (response) {
-                message.reply("Successful request");
             }).then(function (data) {
                 message.reply("Image has been uploaded");
             }).catch(function (err) {
-                message.reply("There was an error");
+                message.reply("There was an error uploading your image");
             });
 
         }
