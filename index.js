@@ -36,14 +36,11 @@ client.on('messageCreate', (message) => {
 
             fetch('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
                 method: 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
                 body: JSON.stringify({ 
                     image : image,
                     token : process.env.TOKEN
-                })}).then(function (response) {
+                })
+            }).then(function (response) {
             }).then(function (data) {
                 message.reply('Image has been successfully uploaded. Please confirm it can be seen on the site frontend.');
             }).catch(function (err) {
