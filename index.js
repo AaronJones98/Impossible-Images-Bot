@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
+const axios = require('axios');
 
 dotenv.config();
 
@@ -34,27 +35,16 @@ client.on('messageCreate', (message) => {
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
-            var payload = {
+            axios.post('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
                 image : image,
                 token : process.env.TOKEN
-            };
-
-            var data = new FormData();
-            data.append( "json", JSON.stringify( payload ) );
-
-            fetch('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },
-                  body: data
-            }).then(function (response) {
-            }).then(function (data) {
+              })
+              .then(function (response) {
                 message.reply('Image has been successfully uploaded. Please confirm it can be seen on the site frontend.');
-            }).catch(function (err) {
+              })
+              .catch(function (error) {
                 message.reply("There was an error uploading your image");
-            });
+              });
 
         }
 
