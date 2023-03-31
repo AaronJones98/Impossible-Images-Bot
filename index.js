@@ -34,7 +34,7 @@ client.on('messageCreate', (message) => {
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
-            fetch(`https://impossibleimages.co.uk/wp-json/impossibleimages/upload?image=${image}`).then(function (response) {
+            fetch(`https://impossibleimages.co.uk/wp-json/impossibleimages/upload?image=${image}&token=${process.env.TOKEN}`).then(function (response) {
             }).then(function (data) {
                 message.reply("Image has been uploaded");
             }).catch(function (err) {
