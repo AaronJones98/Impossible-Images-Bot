@@ -20,9 +20,9 @@ client.on('messageCreate', (message) => {
 
     var prompt = message.content;
 
-    if(prompt.startsWith("--ii")){
+    if(prompt.startsWith("-ii")){
 
-        var image = prompt.split('--ii ')[1]
+        var image = prompt.split('-ii ')[1]
         
         if(! prompt.includes('http')){
 
