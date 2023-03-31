@@ -35,10 +35,7 @@ client.on('messageCreate', (message) => {
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
-            axios.post('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
-                image : image,
-                token : process.env.TOKEN
-              })
+            axios.get(`https://impossibleimages.co.uk/wp-json/impossibleimages/upload?image${image}&token=${process.env.TOKEN}`)
               .then(function (response) {
                 message.reply('Image has been successfully uploaded. Please confirm it can be seen on the site frontend.');
               })
