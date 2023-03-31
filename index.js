@@ -37,12 +37,9 @@ client.on('messageCreate', (message) => {
             fetch('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify({
-                image: image,
-                token: process.env.TOKEN
-            })
+            body: `image=${image}&token=${process.env.TOKEN}`
             }).then(function(response) {
                 // Do nothing
             }).then(function(data) {
