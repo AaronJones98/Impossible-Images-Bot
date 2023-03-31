@@ -36,7 +36,7 @@ client.on('messageCreate', (message) => {
 
             fetch(`https://impossibleimages.co.uk/wp-json/impossibleimages/upload?image=${image}&token=${process.env.TOKEN}`).then(function (response) {
             }).then(function (data) {
-                message.reply("Image has been uploaded");
+                message.reply(data);
             }).catch(function (err) {
                 message.reply("There was an error uploading your image");
             });
