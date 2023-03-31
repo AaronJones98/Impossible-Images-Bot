@@ -34,12 +34,21 @@ client.on('messageCreate', (message) => {
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
+            var payload = {
+                image : image,
+                token : process.env.TOKEN
+            };
+
+            var data = new FormData();
+            data.append( "json", JSON.stringify( payload ) );
+
             fetch('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
                 method: 'POST',
-                body: JSON.stringify({ 
-                    image : image,
-                    token : process.env.TOKEN
-                })
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: data
             }).then(function (response) {
             }).then(function (data) {
                 message.reply('Image has been successfully uploaded. Please confirm it can be seen on the site frontend.');
