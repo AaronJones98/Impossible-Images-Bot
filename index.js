@@ -30,23 +30,31 @@ client.on('messageCreate', (message) => {
             message.reply("Missing the image url. Please try again")
 
         }else{
-    
-            //Run the upload
-            message.reply("Image is currently being uploaded to impossibleimages.co.uk. Please wait for confirmation.")
 
-            fetch('https://impossibleimages.co.uk/wp-json/impossibleimages/upload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `image=${image}&token=${process.env.TOKEN}`
-            }).then(function(response) {
-                // Do nothing
-            }).then(function(data) {
-                message.reply('Image has been successfully uploaded. Please confirm it can be seen on the site frontend.');
-            }).catch(function(err) {
-                message.reply('There was an error uploading your image');
-            });
+            if(image.includes('.jpg') || image.includes('.png') || image.includes('.gif')){
+    
+                //Run the upload
+                message.reply("Image is currently being uploaded to impossibleimages.ai | Please wait for confirmation.")
+
+                fetch('https://impossibleimages.ai/wp-json/impossibleimages/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `image=${image}&token=${process.env.TOKEN}`
+                }).then(function(response) {
+                    // Do nothing
+                }).then(function(data) {
+                    message.reply('Image has been successfully uploaded. Please confirm it can be seen here: https://impossibleimages.ai/images/');
+                }).catch(function(err) {
+                    message.reply('There was an error uploading your image');
+                });
+
+            }else{
+
+                message.reply("Wrong image format. Please try uploading a different file type or amend your prompt");
+
+            }
 
         }
 
