@@ -22,8 +22,9 @@ var channel_name = '';
 client.on('messageCreate', (message) => {
 
     message.channel.messages.fetch({ limit: 2 }).then().then(function(recent_messages){
+        var previous_message = recent_messages.last();
 
-        if(recent_messages.last().content.startsWith('Describe the image') && message.channel.id == previous_message.channel.id){
+        if(previous_message.content.startsWith('Describe the image') && message.channel.id == previous_message.channel.id){
 
             description = message.content;
             channel_name = message.channel.name;
