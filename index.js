@@ -18,14 +18,12 @@ client.on("ready", () => {
 
 var image = '';
 var description = '';
-var uploading = false;
 var channel_name = '';
 client.on('messageCreate', (message) => {
 
     message.channel.messages.fetch({ limit: 2 }).then().then(function(recent_messages){
-        var previous_message = recent_messages.last();
 
-        if(previous_message.content.startsWith('Describe the image')){
+        if(recent_messages.last().content.startsWith('Describe the image') && message.channel.id == previous_message.channel.id){
 
             description = message.content;
             channel_name = message.channel.name;
@@ -38,7 +36,7 @@ client.on('messageCreate', (message) => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `image=${image}&description=${description}&channel=${channel_name}&token=${process.env.TOKEN}`
+            body: `image=${recent_messages[0].content.split('-ii ')[0]}&description=${description}&channel=${channel_name}&token=${process.env.TOKEN}`
             }).then(function(response) {
                 // Do nothing
             }).then(function(data) {
@@ -71,7 +69,6 @@ client.on('messageCreate', (message) => {
 
                 if(image.includes('.jpg') || image.includes('.png') || image.includes('.gif')){
 
-                    uploading = true;
                     message.reply("Describe the image. Just respond to this message.");
 
                 }
