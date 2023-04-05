@@ -21,13 +21,15 @@ var description = '';
 var channel_name = '';
 client.on('messageCreate', (message) => {
 
-    message.channel.messages.fetch({ limit: 2 }).then().then(function(recent_messages){
-        var previous_message = recent_messages.last();
+    message.channel.messages.fetch({ limit: 3 }).then().then(function(recent_messages){
+        var previous_message = recent_messages.at(1);
 
         if(previous_message.content.startsWith('Describe the image') && message.channel.id == previous_message.channel.id){
 
             description = message.content;
             channel_name = message.channel.name;
+
+            console.log(recent_messages.at(2).content.split('-ii ')[1]);
 
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.ai | Please wait for confirmation.")
@@ -37,7 +39,7 @@ client.on('messageCreate', (message) => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `image=${recent_messages[0].content.split('-ii ')[0]}&description=${description}&channel=${channel_name}&token=${process.env.TOKEN}`
+            body: `image=${recent_messages.at(2).content.split('-ii ')[1]}&description=${description}&channel=${channel_name}&token=${process.env.TOKEN}`
             }).then(function(response) {
                 // Do nothing
             }).then(function(data) {
