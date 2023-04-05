@@ -54,22 +54,30 @@ client.on('messageCreate', (message) => {
 
     if(prompt.startsWith("-ii")){
 
-        image = prompt.split('-ii ')[1]
-        
-        if(! prompt.includes('http')){
+        if(process.env.MAINTENANCE){
 
-            //If user doesn't insert an image
-            message.reply("Missing the image url. Please try again")
+            message.reply("The api is currently under maintenance. Please wait until it is back up and running.")
 
         }else{
 
-            if(image.includes('.jpg') || image.includes('.png') || image.includes('.gif')){
+            image = prompt.split('-ii ')[1]
+            
+            if(! prompt.includes('http')){
 
-                uploading = true;
-                message.reply("Describe the image. Just respond to this message.");
+                //If user doesn't insert an image
+                message.reply("Missing the image url. Please try again")
+
+            }else{
+
+                if(image.includes('.jpg') || image.includes('.png') || image.includes('.gif')){
+
+                    uploading = true;
+                    message.reply("Describe the image. Just respond to this message.");
+
+                }
 
             }
-
+        
         }
 
     }
