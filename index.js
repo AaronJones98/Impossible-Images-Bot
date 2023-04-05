@@ -29,8 +29,6 @@ client.on('messageCreate', (message) => {
             description = message.content;
             channel_name = message.channel.name;
 
-            console.log(recent_messages.at(2).content.split('-ii ')[1]);
-
             //Run the upload
             message.reply("Image is currently being uploaded to impossibleimages.ai | Please wait for confirmation.")
     
