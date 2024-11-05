@@ -41,7 +41,7 @@ client.on('messageCreate', (message) => {
             }).then(function(response) {
                 // Do nothing
             }).then(function(data) {
-                message.reply("The image has been queued for upload. Please wait atleast 48 hours before processing a reupload.");
+                message.reply("Your image is in the upload queue and should be available within 72 hours. Please avoid re-uploading, as this may create duplicate entries.");
             }).catch(function(err) {
                 message.reply('There was an error uploading your image');
             });
