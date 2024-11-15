@@ -41,7 +41,7 @@ client.on('messageCreate', (message) => {
             }).then(function(response) {
                 // Do nothing
             }).then(function(data) {
-                message.reply(data);
+                message.reply(response);
             }).catch(function(err) {
                 message.reply('There was an error uploading your image');
             });
