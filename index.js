@@ -39,9 +39,9 @@ client.on('messageCreate', (message) => {
             },
             body: `image=${prompt.split('-ii ')[1]}&channel=${channel_name}&token=${process.env.TOKEN}`
             }).then(function(response) {
-                // Do nothing
+                return response.json();
             }).then(function(data) {
-                message.reply(response);
+                message.reply(data.message);
             }).catch(function(err) {
                 message.reply('There was an error uploading your image');
             });
